@@ -23,9 +23,8 @@ public class DiaryController {
     }
 
     @PostMapping("/creat")
-    public ResponseEntity<String> creatDiary(@RequestBody DiaryRequestDto data){
-        diaryService.creatDiary(data);
-
-        return ResponseEntity.ok().body("ok");
+    public ResponseEntity<DiaryResponseDto> creatDiary(@RequestBody DiaryRequestDto data){
+        DiaryResponseDto diary = diaryService.creatDiary(data);
+        return ResponseEntity.ok().body(diary);
     }
 }

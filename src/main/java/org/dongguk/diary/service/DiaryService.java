@@ -22,10 +22,16 @@ public class DiaryService {
                 .content(diary.getContent()).build();
     }
 
-    public void creatDiary(DiaryRequestDto data){
-        diaryRepository.save(Diary.builder()
+    public DiaryResponseDto creatDiary(DiaryRequestDto data){
+        Diary diary = Diary.builder()
                 .user(data.getUser())
                 .title(data.getTitle())
-                .content(data.getContent()).build());
+                .content(data.getContent()).build();
+
+        diaryRepository.save(diary);
+
+        return DiaryResponseDto.builder()
+                .title(diary.getTitle())
+                .content(diary.getContent()).build();
     }
 }
