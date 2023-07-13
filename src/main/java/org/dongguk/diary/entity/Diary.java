@@ -25,4 +25,11 @@ public class Diary {
 
     @Column(name = "content", nullable = false)
     private String content;
+
+    @Builder
+    public Diary(User user, String title, String content){
+        this.user = user;
+        this.title = title;
+        this.content = content;
+    }
 }

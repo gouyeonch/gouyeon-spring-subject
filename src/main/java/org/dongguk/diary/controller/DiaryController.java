@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.dongguk.diary.dto.DiaryRequestDto;
 import org.dongguk.diary.dto.DiaryResponseDto;
 import org.dongguk.diary.service.DiaryService;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -15,13 +17,15 @@ public class DiaryController {
     private final DiaryService diaryService;
 
     @GetMapping("/read/{id}")
-    public DiaryResponseDto readDiary(@PathVariable Integer id){
+    public ResponseEntity<DiaryResponseDto> readDiary(@PathVariable Integer id){
         DiaryResponseDto diary = diaryService.readDiary(id);
-        return diary;
+        return ResponseEntity.ok().body(diary);
     }
 
     @PostMapping("/creat")
-    public DiaryResponseDto creatDiary(@RequestBody DiaryRequestDto data){
+    public ResponseEntity<String> creatDiary(@RequestBody DiaryRequestDto data){
+        diaryService.creatDiary(data);
 
+        return ResponseEntity.ok().body("ok");
     }
 }
