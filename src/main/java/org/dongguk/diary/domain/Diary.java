@@ -15,8 +15,8 @@ import java.sql.Timestamp;
 public class Diary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "did")
-    private Long did;
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
