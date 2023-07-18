@@ -1,10 +1,12 @@
-package org.dongguk.diary.entity;
+package org.dongguk.diary.domain;
 
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.sql.Timestamp;
 
 @Entity
 @Getter
@@ -16,9 +18,8 @@ public class Diary {
     @Column(name = "did")
     private Long did;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "uid", nullable = false)
-    private User user;
+    @Column(name = "name", nullable = false)
+    private String name;
 
     @Column(name = "title", nullable = false)
     private String title;
@@ -27,8 +28,8 @@ public class Diary {
     private String content;
 
     @Builder
-    public Diary(User user, String title, String content){
-        this.user = user;
+    public Diary(String name, String title, String content){
+        this.name = name;
         this.title = title;
         this.content = content;
     }

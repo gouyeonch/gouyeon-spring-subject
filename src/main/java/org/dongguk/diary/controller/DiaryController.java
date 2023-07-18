@@ -2,12 +2,10 @@ package org.dongguk.diary.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.dongguk.diary.dto.DiaryRequestDto;
-import org.dongguk.diary.dto.DiaryResponseDto;
 import org.dongguk.diary.service.DiaryService;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.dongguk.study.dto.DiaryDto;
 
 @Slf4j
 @RestController
@@ -16,15 +14,23 @@ public class DiaryController {
 
     private final DiaryService diaryService;
 
-    @GetMapping("/read/{id}")
-    public ResponseEntity<DiaryResponseDto> readDiary(@PathVariable Integer id){
-        DiaryResponseDto diary = diaryService.readDiary(id);
-        return ResponseEntity.ok().body(diary);
+    @PostMapping("/creat")
+    public Boolean creatDiary(@RequestBody DiaryDto data){
+        return diaryService.creatDiary(data);
     }
 
-    @PostMapping("/creat")
-    public ResponseEntity<DiaryResponseDto> creatDiary(@RequestBody DiaryRequestDto data){
-        DiaryResponseDto diary = diaryService.creatDiary(data);
-        return ResponseEntity.ok().body(diary);
+    @GetMapping("/read/{id}")
+    public DiaryDto readDiary(@PathVariable Long id){
+        return diaryService.readDiary(id);
+    }
+
+    @PutMapping("/update/{id}")
+    public DiaryDto updateDiary(@RequestBody DiaryDto data){
+        return diaryService.updateDiary(data);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public Boolean deleteDiary(@PathVariable Long id){
+        return diaryService.deleteDiary(id);
     }
 }
