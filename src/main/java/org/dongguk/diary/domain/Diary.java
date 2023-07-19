@@ -27,10 +27,14 @@ public class Diary {
     @Column(name = "content", nullable = false)
     private String content;
 
+    @Column(name = "status", nullable = false)
+    private String status;
+
     @Builder
-    public Diary(String name, String title, String content){
+    public Diary(String name, String title, String content, String status){
         this.name = name;
         this.title = title;
         this.content = content;
+        this.status = status;
     }
 }

@@ -14,13 +14,15 @@ public class DiaryDto {
     private String name;
     private String title;
     private String content;
+    private String status;
 
     @Builder
-    public DiaryDto(Long id, Timestamp created_date, String name, String title, String content) {
+    public DiaryDto(Long id, Timestamp created_date, String name, String title, String content, String status) {
         this.id = id;
         this.created_date = created_date;
         this.name = name;
         this.title = title;
         this.content = content;
+        this.status = status;
     }
 }

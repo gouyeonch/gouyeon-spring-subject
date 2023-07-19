@@ -18,7 +18,8 @@ public class DiaryService {
         Diary diary = Diary.builder().
                 name(data.getName()).
                 title(data.getTitle()).
-                content(data.getContent()).build();
+                content(data.getContent()).
+                status("exist").build();
 
         diaryRepository.save(diary);
 
@@ -26,16 +27,17 @@ public class DiaryService {
     }
 
     public DiaryDto readDiary(Long id){
-        Diary diary = diaryRepository.findByDid(id).orElseThrow(() -> new NoSuchElementException());
+        Diary diary = diaryRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
 
         return DiaryDto.builder()
                 .name(diary.getName())
                 .title(diary.getTitle())
-                .content(diary.getContent()).build();
+                .content(diary.getContent())
+                .status(diary.getStatus()).build();
     }
 
     public DiaryDto updateDiary(DiaryDto data){
-        Diary diary = diaryRepository.findByDid(data.getId()).orElseThrow(() -> new NoSuchElementException());
+        Diary diary = diaryRepository.findById(data.getId()).orElseThrow(() -> new NoSuchElementException());
 
         diary.setName(data.getName());
         diary.setTitle(data.getTitle());
@@ -49,9 +51,9 @@ public class DiaryService {
 
     public Boolean deleteDiary(Long id){
 
-        Diary diary = diaryRepository.findByDid(id).orElseThrow(() -> new NoSuchElementException());
+        Diary diary = diaryRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
 
-        diaryRepository.delete(diary);
+        diary.setStatus("deleted");
 
         return Boolean.TRUE;
     }
