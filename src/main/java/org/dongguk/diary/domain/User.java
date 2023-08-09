@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 @Table(name = "users")
 @DynamicUpdate
@@ -26,12 +27,12 @@ public class User {
     @Column(name = "social_id", nullable = false)
     private String socialId;
 
-    @Column(name = "provider", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private ELoginProvider provider;
-
-    @Column(name = "role", nullable = false)
-    private EUserRole role;
+//    @Column(name = "provider", nullable = false)
+//    @Enumerated(EnumType.STRING)
+//    private ELoginProvider provider;
+//
+//    @Column(name = "role", nullable = false)
+//    private EUserRole role;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -45,9 +46,9 @@ public class User {
     @Builder
     public User(String socialId, ELoginProvider provider, EUserRole role, String name) {
         this.socialId = socialId;
-        this.provider = provider;
+        //this.provider = provider;
         this.name = name;
-        this.role = role;
+        //this.role = role;
         this.createdDate = Timestamp.valueOf(LocalDateTime.now());
     }
 

@@ -10,4 +10,14 @@ public class KakaoUserInfo {
     String email;
     String nickname;
     String access_token;
+
+    @Override
+    public String toString() {
+        return "KakaoUserInfo{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", access_token='" + access_token + '\'' +
+                '}';
+    }
 }

@@ -19,7 +19,7 @@ public class KakaoController {
         log.info("kakaoLogin");
         KakaoUserInfo userInfo = kakaoService.getUserInfo(code);
 
-        System.out.println(userInfo);
+        System.out.println(userInfo.toString());
 
         return "redirect:/";
     }
